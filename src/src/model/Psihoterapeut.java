@@ -17,7 +17,7 @@ public class Psihoterapeut {
         return ime + " " + prezime;
     }
 
-    // Getteri
+
     public int getId() { return id; }
     public String getEmail() { return email; }
 }

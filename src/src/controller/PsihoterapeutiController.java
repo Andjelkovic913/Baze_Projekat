@@ -10,7 +10,7 @@ public class PsihoterapeutiController {
 
 
     public List<Psihoterapeut> vratiSvePsihoterapeute() {
-        JDBCUtils.connect(); // ⬅️ mora pre svakog pristupa bazi ako nije već pozvan
+        JDBCUtils.connect();
         return JDBCUtils.selectAllFromPsihoterapeut();
     }
 }

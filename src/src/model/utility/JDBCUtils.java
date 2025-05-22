@@ -15,8 +15,8 @@ public class JDBCUtils {
         try {
             connection = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/novi_pocetak?useSSL=false&serverTimezone=UTC",
-                    "root", // Korisnik koji koristiš u phpMyAdmin
-                    ""      // Lozinka (prazna ako je nisi postavljao)
+                    "root",
+                    ""
             );
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -27,7 +27,7 @@ public class JDBCUtils {
         List<Psihoterapeut> terapeuti = new ArrayList<>();
         String query = "SELECT psihoterapeut_id, ime, prezime, email FROM psihoterapeut";
         try {
-            Statement statement = connection.createStatement(); // koristi globalni connection
+            Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 int id = rs.getInt("psihoterapeut_id");

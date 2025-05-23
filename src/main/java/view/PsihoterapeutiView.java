@@ -8,11 +8,17 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 import model.Psihoterapeut;
 import controller.PsihoterapeutiController;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
 
 public class PsihoterapeutiView extends BorderPane {
 
     private TableView<Psihoterapeut> table;
     private Button refreshButton;
+    private Button btnRegistracija;
     private PsihoterapeutiController controller;
 
     public PsihoterapeutiView() {
@@ -23,7 +29,15 @@ public class PsihoterapeutiView extends BorderPane {
     }
 
     private void initializeComponents() {
-        // Inicijalizacija tabele
+        // Naslov
+        Text naslov = new Text("Pregled psihoterapeuta");
+        naslov.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+
+        // Dugme za registraciju
+        btnRegistracija = new Button("Registruj novog psihoterapeuta");
+        btnRegistracija.setOnAction(e -> otvoriRegistraciju());
+
+        // Tabela
         table = new TableView<>();
         
         // Kolone tabele
@@ -55,7 +69,7 @@ public class PsihoterapeutiView extends BorderPane {
         HBox topBox = new HBox(10);
         topBox.setAlignment(Pos.CENTER_RIGHT);
         topBox.setPadding(new Insets(10));
-        topBox.getChildren().add(refreshButton);
+        topBox.getChildren().addAll(refreshButton, btnRegistracija);
 
         // Glavni layout
         VBox mainBox = new VBox(10);
@@ -69,5 +83,14 @@ public class PsihoterapeutiView extends BorderPane {
 
     private void ucitajPodatke() {
         table.setItems(controller.vratiSvePsihoterapeute());
+    }
+
+    private void otvoriRegistraciju() {
+        Scene scene = getScene();
+        Stage stage = (Stage) scene.getWindow();
+        
+        RegistracijaPsihoterapeutaView registracijaView = new RegistracijaPsihoterapeutaView();
+        Scene novaScena = new Scene(registracijaView, 800, 600);
+        stage.setScene(novaScena);
     }
 }

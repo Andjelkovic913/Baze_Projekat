@@ -8,7 +8,7 @@ import java.util.List;
 
 public class JDBCUtils {
     private static final String URL =
-            "jdbc:mysql://localhost:3306/novi_pocetak?useSSL=false&serverTimezone=UTC";
+            "jdbc:mysql://localhost:3306/novi_pocetak?useSSL=false&serverTimezone=UTC&noAccessToProcedureBodies=true";
     private static final String USER = "appuser";
     private static final String PASS = "StrongPass123!";
 
@@ -36,11 +36,7 @@ public class JDBCUtils {
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next())
-                list.add(new Psihoterapeut(
-                        rs.getInt(1),
-                        rs.getString(2),
-                        rs.getString(3),
-                        rs.getString(4)));
+                list.add(new Psihoterapeut(rs));
         } catch (SQLException e) {
             e.printStackTrace(); // zameni Logger-om
         }

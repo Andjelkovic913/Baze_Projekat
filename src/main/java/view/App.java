@@ -10,10 +10,10 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) {
         JDBCUtils.connect();
-        PsihoterapeutiView view = new PsihoterapeutiView();
+        PrijavaPsihoterapeutaView view = new PrijavaPsihoterapeutaView();
         Scene scene = new Scene(view, 800, 600);
         
-        primaryStage.setTitle("Novi Početak - Pregled Psihoterapeuta");
+        primaryStage.setTitle("Novi Početak - Prijava");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
